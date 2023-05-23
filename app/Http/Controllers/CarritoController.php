@@ -38,7 +38,7 @@ class CarritoController extends Controller
     public function delete($id)
     {
         $burgir = CartItem::find($id);
-        if(!$burgir){
+        if (!$burgir) {
             return "burgir no encontrada";
         }
         $burgir->delete();
@@ -46,7 +46,8 @@ class CarritoController extends Controller
         // return response()->json(['message' => 'Burgir borrada'], 204);
         return back()->with('success', 'Burgir borrada');
     }
-    public function buy(Request $request){
+    public function buy(Request $request)
+    {
         // $cartItems = CartItem::all();
         // foreach ($cartItems as $cartItem) {
         //     History::create([
@@ -63,7 +64,7 @@ class CarritoController extends Controller
         $hora = now()->format('Y-m-d H:i:s');
 
         $historial = $request->session()->get('historial', []);
-        // dd($historial);
+        // dd($historia l);
         $historial[] = [
             'carrito' => $carrito,
             'hora' => $hora,
@@ -79,6 +80,8 @@ class CarritoController extends Controller
     public function indexHistory(Request $request)
     {
         $historial = $request->session()->get('historial', []);
+        // dd($historial);
+        // die();
         return view('history')->with('historial', $historial);
         // $historys = History::where('user_id', auth()->id())->get();
         // return view('history')->with('historys', $historys);
